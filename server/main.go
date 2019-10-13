@@ -22,24 +22,27 @@ import (
 	"github.com/savaki/swag/endpoint"
 	"github.com/savaki/swag/swagger"
 	"github.com/developer-kikikaikai/githubapi/server/data"
+	"github.com/developer-kikikaikai/githubapi/server/usecases"
 )
 
 func handle(c *gin.Context) {
-	token := Token{
-		Code: c.Param("code"),
+	code := c.DefaultQuery("code", "")
+	if token, err := usecases.GenerateToken(code); err != nil {
+		c.String(http.StatusForbidden, err.Error())
+	} else {
+		c.JSON(http.StatusOK, Token{Token:token})
 	}
-	c.JSON(http.StatusOK, token)
 	c.Abort()
 }
 
 type Token struct {
-	Code string `json:"code"`
+	Token string `json:"access_token"`
 }
 
 func main() {
-	get := endpoint.New("get", "/auth/{code}", "Send ID from GitHub",
+	get := endpoint.New("get", "/auth", "Send ID from GitHub",
 		endpoint.Handler(handle),
-		endpoint.Path("code", "string", "ID from GitHub", true),
+		endpoint.Query("code", "string", "authorization code", true),
 		endpoint.Response(http.StatusOK, Token{}, "successful operation"),
 	)
 

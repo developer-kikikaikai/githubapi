@@ -14,7 +14,7 @@ type Settings struct {
 	Cert string `envconfig:"server_cert" default:""`
 	Key string `envconfig:"server_key" default:""`
 	ClientKey string `envconfig:"client_key" default:""`
-	ClientSecret string `envconfig:"client_sercret" default:""`
+	ClientSecret string `envconfig:"client_secret" default:""`
 }
 
 var _settings = loadSettings()
@@ -44,3 +44,4 @@ func GetClientKey() string {
 func GetClientSecret() string {
 	return _settings.ClientSecret
 }
+
