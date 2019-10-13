@@ -4,7 +4,8 @@ Client->GitHub: https://github.com/settings/applications/new(Application name, H
 GitHub->OAuthApplication:
 OAuthApplication-->Client: show(ID, Secret)
 Client->GitHub: `https://github.com/login/oauth/authorize?client_id=$CLIENT_ID&scope=repo`
-GitHub->AuthServer: Authorization callback URL with query code=${code}
+GitHub-->Client: redirect to Authorization callback URL with query code=${code}
+Client->AuthServer: Authorization callback URL with query code=${code}
 AuthServer->GitHub:POST https://github.com/login/oauth/access_token ({"code=$CODE","client_id=$ID","client_secret=$SECRET"})
 GitHub->AuthServer:response({"access_token":"xxx", "scope":"repo,gist", "token_type":"bearer"})
 @enduml
