@@ -76,7 +76,7 @@ cd repos
 
 ```
 $ curl -H "Authorization: bearer yyyy" -X POST \
-    -d '{"name":"repos_name","auto_init":true or false}' \
+    -d '{"name":"repos_name","auto_init":true or false, ,"private":true or false}' \
     https://api.github.com/user/repos
 ```
 
