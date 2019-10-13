@@ -6,8 +6,8 @@ This is a support tool to use the GitHub API.
 GitHub provices an API to create/update/delete repositories. detail: https://developer.github.com/v3/
 To use this API, you need 
 - To get access_token. There are 2 solutions.
- - create on [GitHub page](https://github.com/settings/tokens/new)
- - Create by API. Now I write how to create by using API
+  - create on [GitHub page](https://github.com/settings/tokens/new)
+  - Create by API. Now I write how to create by using API
 - Call API with access_token
 
 This tool supports to use GitHub API.
