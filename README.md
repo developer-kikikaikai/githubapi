@@ -18,11 +18,9 @@ At first, you have to get access token.
 
 1. Create GitHub OAuth Application at [here](https://github.com/settings/applications/new).
 
-GitHub APIv3 OAuth sequence is folliwing:
+GitHub APIv3 OAuth sequence, please see sequence.pu.
 
 Authorization callback URL: Your authorization server
-
-Aboute sequence, please see sequence.pu
 
 Authorization callback URL is your authorization server's URI.
 And you can get access_token by using code which is in callback URL's query.
