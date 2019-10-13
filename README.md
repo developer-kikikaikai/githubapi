@@ -22,16 +22,7 @@ GitHub APIv3 OAuth sequence is folliwing:
 
 Authorization callback URL: Your authorization server
 
-```plantuml
-Client->GitHub: https://github.com/settings/applications/new(Application name, Homepage URL, Authorization callback URL)
-GitHub->*OAuthApplication:
-Client->OAuthApplication: https://github.com/settings/developers with application name
-OAuthApplication-->Client: show(Client ID, Client Secret)
-Client->GitHub: `https://github.com/login/oauth/authorize?client_id=$CLIENT_ID&scope=repo`
-GitHub->your authorization server:Authorization callback URL with query code=${code}
-your authorization server->GitHub:POST https://github.com/login/oauth/access_token with body {"code=$CODE","client_id=$CLIENT_ID","client_secret=$CLIENT_SECRET"}
-GitHub->your authorization server:response({"access_token":"xxx", "scope":"repo,gist", "token_type":"bearer"})
-```
+Aboute sequence, please see sequence.pu
 
 Authorization callback URL is your authorization server's URI.
 And you can get access_token by using code which is in callback URL's query.
