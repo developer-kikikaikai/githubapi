@@ -1,17 +1,17 @@
 package usecases
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
-	"github.com/go-resty/resty/v2"
 	"github.com/developer-kikikaikai/githubapi/server/data"
+	"github.com/go-resty/resty/v2"
 )
 
 type PostToken struct {
-	Code string `json:"code"`
-	ID string `json:"client_id"`
+	Code   string `json:"code"`
+	ID     string `json:"client_id"`
 	Secret string `json:"client_secret"`
 }
 
@@ -19,10 +19,10 @@ type Result struct {
 	Token string `json:"access_token"`
 }
 
-func GenerateToken(code string) (string,error) {
+func GenerateToken(code string) (string, error) {
 	body := PostToken{
-		Code: code,
-		ID: data.GetClientKey(),
+		Code:   code,
+		ID:     data.GetClientKey(),
 		Secret: data.GetClientSecret(),
 	}
 	//fmt.Printf("Code:%s ID:%s Secret:%s\n", body.Code, body.ID, body.Secret)
@@ -44,4 +44,4 @@ func GenerateToken(code string) (string,error) {
 	}
 
 	return result.Token, nil
-} 
+}

@@ -5,15 +5,15 @@ import (
 )
 
 type Token struct {
-	Code string `json:"code"`
+	Code  string `json:"code"`
 	Token string `json:"token"`
 }
 
 type Settings struct {
-	Port string `envconfig:"server_port" default:""`
-	Cert string `envconfig:"server_cert" default:""`
-	Key string `envconfig:"server_key" default:""`
-	ClientKey string `envconfig:"client_key" default:""`
+	Port         string `envconfig:"server_port" default:""`
+	Cert         string `envconfig:"server_cert" default:""`
+	Key          string `envconfig:"server_key" default:""`
+	ClientKey    string `envconfig:"client_key" default:""`
 	ClientSecret string `envconfig:"client_secret" default:""`
 }
 
@@ -44,4 +44,3 @@ func GetClientKey() string {
 func GetClientSecret() string {
 	return _settings.ClientSecret
 }
-

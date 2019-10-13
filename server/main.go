@@ -17,12 +17,12 @@ package main
 import (
 	"net/http"
 
+	"github.com/developer-kikikaikai/githubapi/server/data"
+	"github.com/developer-kikikaikai/githubapi/server/usecases"
 	"github.com/gin-gonic/gin"
 	"github.com/savaki/swag"
 	"github.com/savaki/swag/endpoint"
 	"github.com/savaki/swag/swagger"
-	"github.com/developer-kikikaikai/githubapi/server/data"
-	"github.com/developer-kikikaikai/githubapi/server/usecases"
 )
 
 func handle(c *gin.Context) {
@@ -30,7 +30,7 @@ func handle(c *gin.Context) {
 	if token, err := usecases.GenerateToken(code); err != nil {
 		c.String(http.StatusForbidden, err.Error())
 	} else {
-		c.JSON(http.StatusOK, Token{Token:token})
+		c.JSON(http.StatusOK, Token{Token: token})
 	}
 	c.Abort()
 }
@@ -57,5 +57,5 @@ func main() {
 		router.Handle(endpoint.Method, path, h)
 	})
 
-	http.ListenAndServeTLS(":"+ data.GetPort(), data.GetCert(), data.GetKey(), router)
+	http.ListenAndServeTLS(":"+data.GetPort(), data.GetCert(), data.GetKey(), router)
 }
